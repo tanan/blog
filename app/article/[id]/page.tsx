@@ -6,6 +6,8 @@ import { options } from "./_components/parser";
 export default async function ArticlePage({ params }: any) {
   const post = await getDetail(params.id);
   const eyecatch = post.eyecatch?.url || "";
+  const content = post.content || "";
+
   return (
     <main className="flex flex-col min-h-screen w-[620px] items-center mx-auto mt-12">
       <div className="article flex flex-col">
@@ -27,7 +29,7 @@ export default async function ArticlePage({ params }: any) {
           </div>
         </div>
         <div className="article-text mt-12 mb-12 leading-9">
-          {parse(post.content, options)}
+          {parse(content, options)}
         </div>
       </div>
     </main>
