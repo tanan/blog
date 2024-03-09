@@ -1,7 +1,5 @@
-import { Article } from "@/lib/types/article";
-
 export async function GET(req: Request) {
-  const res: Article[] = [
+  const res = [
     {
       id: "1234567890qwertyuiopasdfghjkl1",
       title: "これはnoteのタイトルです",
