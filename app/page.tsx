@@ -47,6 +47,7 @@ export default async function Home({
     limit: 10,
     fields: "id,title,eyecatch,category",
   });
+  console.log("called top page");
 
   console.log(data);
   return (
