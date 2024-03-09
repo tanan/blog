@@ -31,12 +31,15 @@ export const client = createClient({
 // ブログ一覧を取得
 export const getBlogs = async (queries?: MicroCMSQueries) => {
   console.log("getBlogs");
-  const data = await client.get({
-    endpoint: "blogs",
-    queries,
-  });
-
-  return data.contents;
+  try {
+    const data = await client.get({
+      endpoint: "blogs",
+      queries,
+    });
+    return data.contents;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 // ブログの詳細を取得

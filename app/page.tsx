@@ -4,6 +4,8 @@ import Sidebar from "@/components/layout/sidebar";
 import { Blog, getBlogs } from "@/lib/cms/client";
 import { toFormatDate } from "@/lib/utils";
 
+export const runtime = "edge";
+
 const ArticleCard = ({ post }: any) => {
   return (
     <a
