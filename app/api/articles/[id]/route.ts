@@ -1,5 +1,3 @@
-import { Article } from "@/lib/types/article";
-
 type Params = {
   id: string;
 };
