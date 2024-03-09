@@ -51,7 +51,6 @@ export default async function Home({
   });
   console.log("called top page");
 
-  console.log(data);
   return (
     <div className="flex flex-col">
       <Header />
