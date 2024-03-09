@@ -22,9 +22,6 @@ if (!process.env.MICROCMS_API_KEY) {
   throw new Error("MICROCMS_API_KEY is required");
 }
 
-console.log(process.env.MICROCMS_SERVICE_DOMAIN);
-console.log(process.env.NEXT_APP_ENDPOINT);
-
 // API取得用のクライアントを作成
 export const client = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
