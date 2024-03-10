@@ -1,19 +1,27 @@
- steps:
- # build the container image
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA', '.']
- # push the container image to Container Registry
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['push', 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA']
- # Deploy container image to Cloud Run
- - name: 'gcr.io/cloud-builders/gcloud'
-   args:
-   - 'run'
-   - 'deploy'
-   - 'blog'
-   - '--image'
-   - 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
-   - '--region'
-   - 'asia-northeast1'
- images:
- - 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
+steps:
+# build the container image
+- name: 'bash'
+  script: |
+    #!/usr/bin/env bash
+    echo ${_MICROCMS_SERVICE_DOMAIN} >> .env.production
+    echo ${_MICROCMS_API_KEY} >> .env.production
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA', '.']
+# push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - 'blog'
+  - '--image'
+  - 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
+  - '--region'
+  - 'asia-northeast1'
+images:
+- 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
+substitutions:
+  _MICROCMS_SERVICE_DOMAIN: "gd2q5n7n1j.microcms.io"
+  _MICROCMS_API_KEY: "dummy"
