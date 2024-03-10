@@ -1,29 +1,18 @@
+import { getDetail } from "@/lib/cms/client";
+import { NextRequest } from "next/server";
+
 type Params = {
   id: string;
 };
 
-export async function GET(req: Request, { params }: { params: Params }) {
-  if (params.id === "1") {
-    return Response.json({
-      id: "1234567890qwertyuiopasdfghjkl1",
-      title: "これはnoteのタイトルです",
-      publishedAt: "2024/02/08 10:00",
-      author: {
-        id: "1",
-        name: "Maki",
-      },
-      text: "これは文章です。長い文章です。テストのために作成しています。複数行の文章が正しく表示されるか確かめています。",
-    });
-  }
+export async function GET(req: NextRequest, { params }: { params: Params }) {
+  const data = await getDetail(params.id);
 
   return Response.json({
-    id: "1234567890qwertyuiopasdfghjkl1",
-    title: "これはnoteのタイトルです",
-    publishedAt: "2024/02/08 10:00",
-    author: {
-      id: "2",
-      name: "Toshi",
-    },
-    text: "これは文章です。長い文章です。テストのために作成しています。複数行の文章が正しく表示されるか確かめています。",
+    id: data.id,
+    title: data.title,
+    eyecatch: data.eyecatch,
+    content: data.content,
+    category: data.category,
   });
 }

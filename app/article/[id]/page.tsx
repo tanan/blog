@@ -1,10 +1,15 @@
 import Image from "next/image";
 import parse from "html-react-parser";
-import { getDetail } from "@/lib/cms/client";
+import { Blog } from "@/lib/cms/client";
 import { options } from "./_components/parser";
 
 export default async function ArticlePage({ params }: any) {
-  const post = await getDetail(params.id);
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/articles/${params.id}`
+  );
+
+  const post: Blog = await data.json();
+
   const eyecatch = post.eyecatch?.url || "";
   const content = post.content || "";
 

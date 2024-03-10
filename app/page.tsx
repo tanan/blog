@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Header from "@/components/layout/header";
 import Sidebar from "@/components/layout/sidebar";
-import { Blog, getBlogs } from "@/lib/cms/client";
+import { Blog } from "@/lib/cms/client";
 import { toFormatDate } from "@/lib/utils";
 
 export const runtime = "edge";
@@ -44,13 +44,12 @@ export default async function Home({
 }: {
   searchParams: { offset: number };
 }) {
-  const data = await getBlogs({
-    offset: offset,
-    limit: 10,
-    fields: "id,title,eyecatch,category",
-  });
-  console.log("called top page");
+  const o = offset === undefined ? 0 : offset;
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/articles?offset=${o}`
+  );
 
+  const posts: Blog[] = await data.json();
   return (
     <div className="flex flex-col">
       <Header />
@@ -59,7 +58,7 @@ export default async function Home({
         <div className="min-h-screen w-full">
           <h2 className="mx-4 my-4 font-semibold text-xl">フォロー中</h2>
           <div className="flex flex-wrap list">
-            {data.map((post: Blog) => (
+            {posts.map((post: Blog) => (
               <ArticleCard key={post.id} post={post} />
             ))}
           </div>

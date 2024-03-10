@@ -1,38 +1,25 @@
-export async function GET(req: Request) {
-  const res = [
-    {
-      id: "1234567890qwertyuiopasdfghjkl1",
-      title: "これはnoteのタイトルです",
-      publishedAt: "2024/02/08 10:00",
-      author: {
-        id: "1",
-        name: "Maki",
-      },
-      content:
-        "これは文章です。長い文章です。テストのために作成しています。複数行の文章が正しく表示されるか確かめています。",
-    },
-    {
-      id: "1234567890qwertyuiopasdfghjkl2",
-      title: "これはnoteのタイトルです",
-      publishedAt: "2024/02/08 10:00",
-      author: {
-        id: "2",
-        name: "Toshi",
-      },
-      content:
-        "これは文章です。長い文章です。テストのために作成しています。複数行の文章が正しく表示されるか確かめています。",
-    },
-    {
-      id: "1234567890qwertyuiopasdfghjkl3",
-      title: "これはnoteのタイトルです",
-      publishedAt: "2024/02/08 10:00",
-      author: {
-        id: "3",
-        name: "Bob",
-      },
-      content:
-        "これは文章です。長い文章です。テストのために作成しています。複数行の文章が正しく表示されるか確かめています。",
-    },
-  ];
-  return Response.json(res);
+import { Blog, getBlogs } from "@/lib/cms/client";
+import { NextRequest } from "next/server";
+
+export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
+  const offset = Number(searchParams.get("offset"));
+  const limit = Number(searchParams.get("limit") || 10);
+  const data = await getBlogs({
+    offset: offset,
+    limit: limit,
+    fields: "id,title,eyecatch,category",
+  });
+
+  return Response.json(
+    data.map((post: Blog) => {
+      return {
+        id: post.id,
+        title: post.title,
+        eyecatch: post.eyecatch,
+        content: post.content,
+        category: post.category,
+      };
+    })
+  );
 }
