@@ -5,9 +5,9 @@ steps:
   - 'build'
   - '-t'
   - 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
-  # - --build-arg=microcms_api_key=$$MICROCMS_API_KEY
+  - --build-arg=microcms_api_key=$$MICROCMS_API_KEY
   - '.'
-  # secretEnv: ["MICROCMS_API_KEY"]
+  secretEnv: ["MICROCMS_API_KEY"]
 # push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA']
@@ -23,7 +23,7 @@ steps:
   - 'asia-northeast1'
 images:
 - 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
-# availableSecrets:
-#   secretManager:
-#     - versionName: projects/anan-project/secrets/MICROCMS_API_KEY/versions/latest
-#       env: MICROCMS_API_KEY
+availableSecrets:
+  secretManager:
+    - versionName: projects/anan-project/secrets/MICROCMS_API_KEY/versions/latest
+      env: MICROCMS_API_KEY

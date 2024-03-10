@@ -17,8 +17,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# ARG xxxx
-# ENV HOGE=xxxx
+ARG microcms_api_key
+ENV MICROCMS_API_KEY=$microcms_api_key
 RUN npm run build
 
 # Production image, copy all the files and run next
