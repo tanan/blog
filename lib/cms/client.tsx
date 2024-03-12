@@ -1,3 +1,4 @@
+import { createClient } from "microcms-js-sdk";
 import type {
   MicroCMSQueries,
   MicroCMSImage,
@@ -21,19 +22,19 @@ if (!process.env.MICROCMS_API_KEY) {
   throw new Error("MICROCMS_API_KEY is required");
 }
 
+// API取得用のクライアントを作成
+export const client = createClient({
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
+  apiKey: process.env.MICROCMS_API_KEY,
+});
+
 // ブログ一覧を取得
 export const getBlogs = async (queries?: MicroCMSQueries) => {
   try {
-    const res = await fetch(
-      `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/blogs`,
-      {
-        headers: {
-          "X-MICROCMS-API-KEY": `${process.env.MICROCMS_API_KEY}`,
-        },
-      }
-    );
-
-    const data = await res.json();
+    const data = await client.get({
+      endpoint: "blogs",
+      queries,
+    });
     return data.contents;
   } catch (err) {
     console.log(err);
@@ -41,22 +42,15 @@ export const getBlogs = async (queries?: MicroCMSQueries) => {
 };
 
 // ブログの詳細を取得
-export const getDetail = async (contentId: string) => {
-  try {
-    const res = await fetch(
-      `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/blogs/${contentId}`,
-      {
-        headers: {
-          "X-MICROCMS-API-KEY": `${process.env.MICROCMS_API_KEY}`,
-        },
-      }
-    );
+export const getDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  const detailData = await client.getListDetail<Blog>({
+    endpoint: "blogs",
+    contentId,
+    queries,
+  });
 
-    const data = await res.json();
-    // console.log(data);
-
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+  return detailData;
 };

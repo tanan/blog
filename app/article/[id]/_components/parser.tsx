@@ -7,8 +7,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-type Replace = NonNullable<HTMLReactParserOptions["replace"]>;
-
 const isElement = (element: unknown): element is Element =>
   element instanceof Element;
 const isText = (text: unknown): text is Text => text instanceof Text;
