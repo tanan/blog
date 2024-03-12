@@ -14,13 +14,13 @@ export type Blog = {
   category?: string;
 } & MicroCMSDate;
 
-// if (!process.env.MICROCMS_SERVICE_DOMAIN) {
-//   throw new Error("MICROCMS_SERVICE_DOMAIN is required");
-// }
+if (!process.env.MICROCMS_SERVICE_DOMAIN) {
+  throw new Error("MICROCMS_SERVICE_DOMAIN is required");
+}
 
-// if (!process.env.MICROCMS_API_KEY) {
-//   throw new Error("MICROCMS_API_KEY is required");
-// }
+if (!process.env.MICROCMS_API_KEY) {
+  throw new Error("MICROCMS_API_KEY is required");
+}
 
 // API取得用のクライアントを作成
 export const client = createClient({
@@ -30,12 +30,27 @@ export const client = createClient({
 
 // ブログ一覧を取得
 export const getBlogs = async (queries?: MicroCMSQueries) => {
-  console.log("getBlogs");
+  // try {
+  //   const data = await client.get({
+  //     endpoint: "blogs",
+  //     queries,
+  //   });
+  //   return data.contents;
+  // } catch (err) {
+  //   console.log(err);
+  // }
+
   try {
-    const data = await client.get({
-      endpoint: "blogs",
-      queries,
-    });
+    const res = await fetch(
+      `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/blogs`,
+      {
+        headers: {
+          "X-MICROCMS-API-KEY": `${process.env.MICROCMS_API_KEY}`,
+        },
+      }
+    );
+
+    const data = await res.json();
     return data.contents;
   } catch (err) {
     console.log(err);
