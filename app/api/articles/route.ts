@@ -1,4 +1,5 @@
-import { Blog, getBlogs } from "@/lib/cms/client";
+import { Blog } from "@/lib/types";
+import { getBlogs } from "@/lib/cms/client";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -10,8 +11,6 @@ export async function GET(req: NextRequest) {
     limit: limit,
     fields: "id,title,eyecatch,category",
   });
-
-  console.log(data);
 
   return Response.json(
     data.contents.map((post: Blog) => {

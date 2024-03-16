@@ -1,16 +1,4 @@
-import type {
-  MicroCMSQueries,
-  MicroCMSImage,
-  MicroCMSDate,
-} from "microcms-js-sdk";
-
-export type Blog = {
-  id: string;
-  title: string;
-  content?: string;
-  eyecatch?: MicroCMSImage;
-  category?: string;
-} & MicroCMSDate;
+import type { MicroCMSQueries } from "microcms-js-sdk";
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
   throw new Error("MICROCMS_SERVICE_DOMAIN is required");
@@ -22,7 +10,6 @@ if (!process.env.MICROCMS_API_KEY) {
 
 const fetchClient = async (url: string) => {
   try {
-    console.log(url);
     const res = await fetch(url, {
       headers: {
         "X-MICROCMS-API-KEY": `${process.env.MICROCMS_API_KEY}`,

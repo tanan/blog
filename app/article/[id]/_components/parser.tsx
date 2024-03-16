@@ -59,7 +59,6 @@ export const options: HTMLReactParserOptions = {
       );
     }
     if (domNode.name === "code") {
-      console.log("code");
       return <code className="bg-gray-200">{domToReact(children)}</code>;
     }
     if (domNode.name === "pre") {
