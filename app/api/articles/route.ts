@@ -11,8 +11,10 @@ export async function GET(req: NextRequest) {
     fields: "id,title,eyecatch,category",
   });
 
+  console.log(data);
+
   return Response.json(
-    data.map((post: Blog) => {
+    data.contents.map((post: Blog) => {
       return {
         id: post.id,
         title: post.title,

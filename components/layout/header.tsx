@@ -16,7 +16,9 @@ export default function Header() {
   return (
     <header className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
       <div className="w-[12rem]">
-        <h2 className="font-bold">NOTE</h2>
+        <a href="/">
+          <h2 className="font-bold">@tanan Buckets</h2>
+        </a>
       </div>
       <div className="relative">
         <HiOutlineSearch

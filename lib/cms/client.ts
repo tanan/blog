@@ -4,7 +4,6 @@ import type {
   MicroCMSDate,
 } from "microcms-js-sdk";
 
-//ブログの型定義
 export type Blog = {
   id: string;
   title: string;
@@ -21,41 +20,36 @@ if (!process.env.MICROCMS_API_KEY) {
   throw new Error("MICROCMS_API_KEY is required");
 }
 
-// ブログ一覧を取得
-export const getBlogs = async (queries?: MicroCMSQueries) => {
+const fetchClient = async (url: string) => {
   try {
-    const res = await fetch(
-      `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/blogs?offset=${queries?.offset}&limit=${queries?.limit}&$fields=${queries?.fields}`,
-      {
-        headers: {
-          "X-MICROCMS-API-KEY": `${process.env.MICROCMS_API_KEY}`,
-        },
-      }
-    );
+    console.log(url);
+    const res = await fetch(url, {
+      headers: {
+        "X-MICROCMS-API-KEY": `${process.env.MICROCMS_API_KEY}`,
+      },
+    });
     const data = await res.json();
-    // console.log(data);
-    return data.contents;
+    return data;
   } catch (err) {
     console.log(err);
   }
 };
 
-// ブログの詳細を取得
+export const getBlogs = async (queries?: MicroCMSQueries) => {
+  const data = await fetchClient(
+    `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/blogs?offset=${queries?.offset}&limit=${queries?.limit}&$fields=${queries?.fields}`
+  );
+  return data;
+};
+
 export const getDetail = async (contentId: string) => {
-  try {
-    const res = await fetch(
-      `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/blogs/${contentId}`,
-      {
-        headers: {
-          "X-MICROCMS-API-KEY": `${process.env.MICROCMS_API_KEY}`,
-        },
-      }
-    );
+  return await fetchClient(
+    `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/blogs/${contentId}`
+  );
+};
 
-    const data = await res.json();
-
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+export const getCategories = async () => {
+  return await fetchClient(
+    `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/categories`
+  );
 };
