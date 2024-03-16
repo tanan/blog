@@ -2,6 +2,7 @@ import Image from "next/image";
 import parse from "html-react-parser";
 import { Blog } from "@/lib/cms/client";
 import { options } from "./_components/parser";
+import "./page.css";
 
 export default async function ArticlePage({ params }: any) {
   const data = await fetch(

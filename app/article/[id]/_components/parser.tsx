@@ -17,7 +17,7 @@ const isText = (text: unknown): text is Text => text instanceof Text;
 
 export const options: HTMLReactParserOptions = {
   replace(domNode: DOMNode) {
-    if (!(domNode instanceof Element)) return;
+    if (!(domNode instanceof Element && domNode.attribs)) return;
 
     const children = domNode.children.filter(
       (node): node is Element | Text => isElement(node) || isText(node)
