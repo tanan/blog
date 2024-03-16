@@ -33,6 +33,7 @@ export const getBlogs = async (queries?: MicroCMSQueries) => {
       }
     );
     const data = await res.json();
+    // console.log(data);
     return data.contents;
   } catch (err) {
     console.log(err);
@@ -52,7 +53,6 @@ export const getDetail = async (contentId: string) => {
     );
 
     const data = await res.json();
-    // console.log(data);
 
     return data;
   } catch (err) {

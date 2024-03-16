@@ -1,9 +1,13 @@
+import { AutoHighlightResult } from "highlight.js";
 import {
   HTMLReactParserOptions,
   Element,
   domToReact,
   Text,
+  DOMNode,
 } from "html-react-parser";
+import parse from "html-react-parser";
+import hljs from "highlight.js/lib/core";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,7 +16,7 @@ const isElement = (element: unknown): element is Element =>
 const isText = (text: unknown): text is Text => text instanceof Text;
 
 export const options: HTMLReactParserOptions = {
-  replace(domNode) {
+  replace(domNode: DOMNode) {
     if (!(domNode instanceof Element)) return;
 
     const children = domNode.children.filter(
@@ -52,6 +56,22 @@ export const options: HTMLReactParserOptions = {
           height={parseInt(height)}
           alt={attribs.alt ? attribs.alt : "Image"}
         />
+      );
+    }
+    if (domNode.name === "code") {
+      console.log("code");
+      return <code className="bg-gray-200">{domToReact(children)}</code>;
+    }
+    if (domNode.name === "pre") {
+      const code: Element = children[0] as Element;
+      const text: Text = code.children[0] as Text;
+      const highlightCode: AutoHighlightResult = hljs.highlightAuto(text.data);
+      return (
+        <pre className="p-4 bg-gray-200">
+          <code className={code.attribs["class"]}>
+            {parse(highlightCode.value, options)}
+          </code>
+        </pre>
       );
     }
   },
