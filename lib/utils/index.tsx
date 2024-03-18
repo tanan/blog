@@ -1,3 +1,4 @@
 export const toFormatDate = (d: string) => {
-  return d.substring(0, 10);
+  const date = new Date(d);
+  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 };

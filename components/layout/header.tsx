@@ -31,8 +31,8 @@ export default function Header() {
           className="text-sm focus:outline-none active:outline-none border boder-gray-300 w-[32rem] h-10 pl-11 pr-4 rounded-sm"
         />
       </div>
-      <div className="flex items-center gap-2 mr-2">
-        <Popover className="relative">
+      <div className="flex items-center gap-2 mr-2 sm:min-w-[12rem]">
+        {/* <Popover className="relative">
           {({ open }) => (
             <>
               <Popover.Button
@@ -166,7 +166,7 @@ export default function Header() {
               </Menu.Item>
             </Menu.Items>
           </Transition>
-        </Menu>
+        </Menu> */}
       </div>
     </header>
   );

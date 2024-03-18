@@ -21,16 +21,8 @@ const ArticleCard = ({ post }: any) => {
       />
       <h2 className="title font-semibold text-lg line-clamp-3">{post.title}</h2>
       <div className="flex mt-2">
-        <Image
-          src="https://source.unsplash.com/80x80?face"
-          width={6}
-          height={6}
-          className="h-6 w-6 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
-          alt=""
-        />
-        <div className="flex ml-2 items-center text-gray-700 gap-4">
-          <span className="text-sm">Toshi</span>
-          <span className="text-xs">
+        <div className="flex items-center text-gray-700 gap-4">
+          <span className="text-sm">
             {toFormatDate(post.category.publishedAt)}
           </span>
         </div>
@@ -56,7 +48,7 @@ export default async function Home({
       <main className="flex">
         <Sidebar />
         <div className="min-h-screen w-full">
-          <h2 className="mx-4 my-4 font-semibold text-xl">フォロー中</h2>
+          <h2 className="mx-4 my-4 font-semibold text-xl">記事一覧</h2>
           <div className="flex flex-wrap list">
             {posts.map((post: Blog) => (
               <ArticleCard key={post.id} post={post} />
