@@ -1,6 +1,6 @@
 import Image from "next/image";
 import parse from "html-react-parser";
-import { Blog } from "@/lib/cms/client";
+import { Blog } from "@/lib/types";
 import { options } from "./_components/parser";
 import "./page.css";
 
