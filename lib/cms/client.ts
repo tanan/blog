@@ -1,4 +1,6 @@
 import type { MicroCMSQueries } from "microcms-js-sdk";
+import { createClient } from "microcms-js-sdk";
+import { Blog } from "@/lib/types";
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
   throw new Error("MICROCMS_SERVICE_DOMAIN is required");
@@ -8,36 +10,43 @@ if (!process.env.MICROCMS_API_KEY) {
   throw new Error("MICROCMS_API_KEY is required");
 }
 
-const fetchClient = async (url: string) => {
+export const client = createClient({
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
+  apiKey: process.env.MICROCMS_API_KEY,
+});
+
+export const getBlogs = async (queries?: MicroCMSQueries) => {
   try {
-    const res = await fetch(url, {
-      headers: {
-        "X-MICROCMS-API-KEY": `${process.env.MICROCMS_API_KEY}`,
-      },
-      cache: "no-store",
+    const data = await client.get({
+      endpoint: "blogs",
+      queries,
     });
-    const data = await res.json();
-    return data;
+    return data.contents;
   } catch (err) {
     console.log(err);
   }
 };
 
-export const getBlogs = async (queries?: MicroCMSQueries) => {
-  const data = await fetchClient(
-    `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/blogs?offset=${queries?.offset}&limit=${queries?.limit}&$fields=${queries?.fields}`
-  );
-  return data;
-};
+export const getDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  const detailData = await client.getListDetail<Blog>({
+    endpoint: "blogs",
+    contentId,
+    queries,
+  });
 
-export const getDetail = async (contentId: string) => {
-  return await fetchClient(
-    `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/blogs/${contentId}`
-  );
+  return detailData;
 };
 
 export const getCategories = async () => {
-  return await fetchClient(
-    `https://${process.env.MICROCMS_SERVICE_DOMAIN}/api/v1/categories`
-  );
+  try {
+    const data = await client.get({
+      endpoint: "categories",
+    });
+    return data.contents;
+  } catch (err) {
+    console.log(err);
+  }
 };

@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
   console.log(data);
 
   return Response.json(
-    data.contents.map((category: Category) => {
+    data.map((category: Category) => {
       return {
         id: category.id,
         name: category.name,

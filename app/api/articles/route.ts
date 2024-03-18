@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
   });
 
   return Response.json(
-    data.contents.map((post: Blog) => {
+    data.map((post: Blog) => {
       return {
         id: post.id,
         title: post.title,
