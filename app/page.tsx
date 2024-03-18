@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Header from "@/components/layout/header";
 import Sidebar from "@/components/layout/sidebar";
-import { Blog } from "@/lib/cms/client";
+import { Blog } from "@/lib/types";
 import { toFormatDate } from "@/lib/utils";
 
 export const runtime = "edge";
