@@ -4,9 +4,11 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
+  const q = searchParams.get("q") || "";
   const offset = Number(searchParams.get("offset"));
   const limit = Number(searchParams.get("limit") || 10);
   const data = await getBlogs({
+    q: q,
     offset: offset,
     limit: limit,
     fields: "id,title,eyecatch,category",
