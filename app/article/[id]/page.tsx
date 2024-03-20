@@ -25,7 +25,6 @@ export default async function ArticlePage({ params }: any) {
         <h2 className="titile w-full mt-16 text-3xl font-bold">{post.title}</h2>
         <div className="article-info mt-5">
           <div className="text-gray-700">
-            {/* <span className="text-sm">{article.author.name}</span> */}
             <span className="text-sm">投稿日 {publishedAt}</span>
             <div className="flex mt-2 gap-2">
               <span className="bg-gray-200 px-2 py-1 rounded-md text-sm">
