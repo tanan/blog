@@ -19,7 +19,7 @@ export default function Layout({
       <body className={inter.className}>
         <div className="flex flex-col">
           <Header />
-          {children}
+          <div className="flex">{children}</div>
         </div>
       </body>
     </html>

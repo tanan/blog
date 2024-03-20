@@ -3,6 +3,7 @@ import type { MicroCMSImage, MicroCMSDate } from "microcms-js-sdk";
 export type Category = {
   id: string;
   name: string;
+  publishedAt?: string;
 };
 
 export type Blog = {
@@ -10,5 +11,5 @@ export type Blog = {
   title: string;
   content?: string;
   eyecatch?: MicroCMSImage;
-  category?: string;
+  category?: Category;
 } & MicroCMSDate;
