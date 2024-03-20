@@ -41,7 +41,9 @@ export default async function ArticlePage({ params }: any) {
           </div>
         </div>
       </main>
-      <TableOfContents content={content} />
+      <div className="block">
+        <TableOfContents content={content} />
+      </div>
     </div>
   );
 }

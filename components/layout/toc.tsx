@@ -19,7 +19,7 @@ export const renderToc = (content: string) => {
 export const TableOfContents = ({ content }: any) => {
   const toc = renderToc(content);
   return (
-    <div>
+    <div className="max-w-[240px]">
       <p className="TableOfContentsHead leading-8 text-gray-800">目次</p>
       <ul>
         {toc.map((data) => (
