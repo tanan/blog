@@ -8,8 +8,6 @@ export async function GET(req: NextRequest) {
   const limit = Number(searchParams.get("limit") || 20);
   const data = await getCategories();
 
-  console.log(data);
-
   return Response.json(
     data.map((category: Category) => {
       return {
