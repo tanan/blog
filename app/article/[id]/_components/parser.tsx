@@ -35,17 +35,20 @@ export const options: HTMLReactParserOptions = {
 
     if (domNode.name === "h2") {
       return (
-        <p className="text-2xl font-bold mt-12 mb-4">{domToReact(children)}</p>
+        <h2 id={attribs.id} className="anchor text-2xl font-bold mt-12 mb-4">
+          {domToReact(children)}
+        </h2>
       );
     }
 
     if (domNode.name === "a") {
-      return (
-        <Link href={attribs.href} className="underline hover:no-underline">
-          {domToReact(children)}
-        </Link>
-      );
+      if (attribs.href.startsWith("http")) {
+        return <a {...attribs}>{domToReact(children)}</a>;
+      } else {
+        return <Link href={attribs.href}>{domToReact(children)}</Link>;
+      }
     }
+
     if (domNode.name === "img") {
       const { height, width } = attribs;
       return (
@@ -72,6 +75,13 @@ export const options: HTMLReactParserOptions = {
           </code>
         </pre>
       );
+    }
+
+    if (
+      domNode.name === "script" &&
+      attribs.src === "//cdn.iframe.ly/embed.js"
+    ) {
+      return <></>;
     }
   },
 };

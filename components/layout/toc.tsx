@@ -25,7 +25,7 @@ export const TableOfContents = ({ content }: any) => {
         {toc.map((data) => (
           <li key={data?.id}>
             <a
-              href={`#${data?.text}`}
+              href={`#${data?.id}`}
               className="leading-8 text-gray-500 hover:text-gray-800 hover:bg-gray-100 hover:rounded-md"
             >
               {data?.text}

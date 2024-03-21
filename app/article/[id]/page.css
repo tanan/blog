@@ -5,3 +5,9 @@ p code {
     margin-right: 4px;
     margin-left: 4px;
 }
+
+.anchor {
+    display: block;
+    padding-top: 40px;
+    margin-top: 0px;
+}
