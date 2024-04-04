@@ -19,8 +19,8 @@ export default async function ArticlePage({ params }: any) {
 
   return (
     <div className="flex mx-auto mt-12 gap-8">
-      <main className="flex flex-col min-h-screen w-[800px] items-center">
-        <div className="article flex flex-col bg-white px-12 py-8">
+      <main className="flex flex-col min-h-screen w-[860px] items-center">
+        <div className="article flex flex-col bg-white px-12 py-8 rounded-md">
           <div className="w-full h-auto"></div>
           <Image src={eyecatch} width={1000} height={1000} alt="" />
           <h2 className="titile w-full mt-16 text-3xl font-bold">
@@ -36,7 +36,7 @@ export default async function ArticlePage({ params }: any) {
               </div>
             </div>
           </div>
-          <div className="article-text mt-12 mb-12 leading-9">
+          <div className="article-text mt-12 mb-12 leading-8">
             {parse(content, options)}
           </div>
         </div>

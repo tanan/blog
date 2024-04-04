@@ -19,14 +19,16 @@ export const renderToc = (content: string) => {
 export const TableOfContents = ({ content }: any) => {
   const toc = renderToc(content);
   return (
-    <div className="max-w-[240px]">
-      <p className="TableOfContentsHead leading-8 text-gray-800">目次</p>
+    <div className="max-w-[280px] sticky top-20 bg-white px-6 py-4 rounded-md">
+      <p className="TableOfContentsHead leading-8 text-gray-800 font-bold">
+        目次
+      </p>
       <ul>
         {toc.map((data) => (
           <li key={data?.id}>
             <a
               href={`#${data?.id}`}
-              className="leading-8 text-gray-500 hover:text-gray-800 hover:bg-gray-100 hover:rounded-md"
+              className="leading-8 text-sm text-gray-500 hover:text-gray-800 hover:rounded-md"
             >
               {data?.text}
             </a>

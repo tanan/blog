@@ -1,6 +1,12 @@
-p code {
-    background-color: rgb(229, 231, 235);
-    color: red;
+p {
+    font-size: 1rem/* 16px */;
+    line-height: 2.25rem/* 36px */;
+    --tw-text-opacity: 1;
+    color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+code {
+    color: white;
     padding: 4px;
     margin-right: 4px;
     margin-left: 4px;

@@ -25,14 +25,6 @@ export const options: HTMLReactParserOptions = {
 
     const { attribs } = domNode;
 
-    if (domNode.name === "p") {
-      return (
-        <p className="text-lg leading-9 text-gray-700">
-          {domToReact(children)}
-        </p>
-      );
-    }
-
     if (domNode.name === "h2") {
       return (
         <h2 id={attribs.id} className="anchor text-2xl font-bold mt-12 mb-4">
@@ -62,14 +54,14 @@ export const options: HTMLReactParserOptions = {
       );
     }
     if (domNode.name === "code") {
-      return <code className="bg-gray-200">{domToReact(children)}</code>;
+      return <code className="bg-[#1a2638] p-1">{domToReact(children)}</code>;
     }
     if (domNode.name === "pre") {
       const code: Element = children[0] as Element;
       const text: Text = code.children[0] as Text;
       const highlightCode: AutoHighlightResult = hljs.highlightAuto(text.data);
       return (
-        <pre className="p-4 bg-gray-200 whitespace-pre-wrap">
+        <pre className="p-4 bg-[#1a2638] whitespace-pre-wrap rounded-md">
           <code className={code.attribs["class"]}>
             {parse(highlightCode.value, options)}
           </code>
