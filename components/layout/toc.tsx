@@ -1,5 +1,6 @@
 import { isText } from "domhandler";
 import * as cheerio from "cheerio";
+import { Link } from "../misc/link";
 
 export const renderToc = (content: string) => {
   const $ = cheerio.load(content);
@@ -24,16 +25,15 @@ export const TableOfContents = ({ content }: any) => {
         目次
       </p>
       <ul>
-        {toc.map((data) => (
-          <li key={data?.id}>
-            <a
-              href={`#${data?.id}`}
-              className="leading-8 text-sm text-gray-500 hover:text-gray-800 hover:rounded-md"
-            >
-              {data?.text}
-            </a>
-          </li>
-        ))}
+        {toc.map((data) => {
+          const id = data?.id || "";
+          const text = data?.text || "";
+          return (
+            <li key={data?.id}>
+              <Link to={id} content={text} />
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
