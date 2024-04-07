@@ -14,5 +14,6 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     eyecatch: data.eyecatch,
     content: data.content,
     category: data.category,
+    publishedAt: data.publishedAt,
   });
 }

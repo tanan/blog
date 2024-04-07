@@ -11,8 +11,12 @@ export async function GET(req: NextRequest) {
     q: q,
     offset: offset,
     limit: limit,
-    fields: "id,title,eyecatch,category",
+    fields: "id,title,eyecatch,category,publishedAt",
   });
+
+  if (!data) {
+    return Response.json({});
+  }
 
   return Response.json(
     data.map((post: Blog) => {
@@ -22,6 +26,7 @@ export async function GET(req: NextRequest) {
         eyecatch: post.eyecatch,
         content: post.content,
         category: post.category,
+        publishedAt: post.publishedAt,
       };
     })
   );

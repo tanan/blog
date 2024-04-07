@@ -7,34 +7,36 @@ import { toFormatDate } from "@/lib/utils";
 export const runtime = "edge";
 
 const ArticleCard = ({ post }: any) => {
+  console.log(post);
   return (
-    <a
-      href={`/article/${post.id}`}
-      className="article mx-4 h-60 mb-4 md:w-[200px] duration-300 hover:opacity-70"
-    >
-      <Image
-        src={post.eyecatch.url}
-        alt="eyecatch"
-        width={200}
-        height={100}
-        className="hidden md:block thumbnail h-28 mb-2"
-      />
-      <Image
-        src={post.eyecatch.url}
-        alt="eyecatch"
-        width={400}
-        height={200}
-        className="block md:hidden thumbnail h-[200px] mb-2"
-      />
-      <h2 className="title font-semibold text-lg line-clamp-3">{post.title}</h2>
-      <div className="flex mt-2">
-        <div className="flex items-center text-gray-700 gap-4">
-          <span className="text-sm">
-            {toFormatDate(post.category.publishedAt)}
-          </span>
+    <div className="mx-4 h-60 mb-4 md:w-[240px] duration-300 hover:opacity-70 bg-white rounded-md">
+      <a href={`/article/${post.id}`} className="article">
+        <Image
+          src={post.eyecatch.url}
+          alt="eyecatch"
+          width={240}
+          height={120}
+          className="hidden md:block thumbnail h-[120px] h-28 mb-2 rounded-t-md"
+        />
+        <Image
+          src={post.eyecatch.url}
+          alt="eyecatch"
+          width={400}
+          height={200}
+          className="block md:hidden thumbnail h-[200px] mb-2 rounded-t-md"
+        />
+        <div className="px-4">
+          <h2 className="title font-semibold text-lg line-clamp-3">
+            {post.title}
+          </h2>
+          <div className="flex mt-2">
+            <div className="flex items-center text-gray-700 gap-4">
+              <span className="text-sm">{toFormatDate(post.publishedAt)}</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   );
 };
 
@@ -52,19 +54,12 @@ export default async function Home({
   return (
     <div className="flex flex-col">
       <Header />
-      {/* <h2 className="mx-auto mx-4 my-4 font-semibold text-xl">記事一覧</h2> */}
       <main className="flex mx-auto min-h-screen">
-        {/* sm */}
-        <div className="md:w-[800px] grid grid-rows-6 grid-cols-auto-fit-60 gap-4">
+        <div className="md:w-[840px] grid grid-rows-6 grid-cols-auto-fit-60 gap-4">
           {posts.map((post: Blog) => (
             <ArticleCard key={post.id} post={post} />
           ))}
         </div>
-        {/* <div className="flex flex-col flex-wrap list">
-          {posts.map((post: Blog) => (
-            <ArticleCard key={post.id} post={post} />
-          ))}
-        </div> */}
         <div className="hidden md:block">
           <Sidebar />
         </div>

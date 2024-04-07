@@ -15,7 +15,7 @@ export default async function ArticlePage({ params }: any) {
 
   const eyecatch = post.eyecatch?.url || "";
   const content = post.content || "";
-  const publishedAt = toFormatDate(post.category?.publishedAt || "");
+  const publishedAt = toFormatDate(post.publishedAt || "");
 
   return (
     <div className="flex mx-auto mt-12 gap-8">
