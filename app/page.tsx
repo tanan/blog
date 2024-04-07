@@ -8,22 +8,22 @@ export const runtime = "edge";
 
 const ArticleCard = ({ post }: any) => {
   return (
-    <div className="mx-4 h-60 mb-4 md:w-[240px] duration-300 hover:opacity-70 bg-white rounded-md">
+    <div className="mx-2 h-60 mb-4 w-[236px] duration-300 hover:opacity-70 bg-white rounded-md">
       <a href={`/article/${post.id}`} className="article">
         <Image
           src={post.eyecatch.url}
           alt="eyecatch"
-          width={240}
-          height={120}
-          className="hidden md:block thumbnail h-[120px] h-28 mb-2 rounded-t-md"
+          width={236}
+          height={118}
+          className="thumbnail h-[120px] mb-2 rounded-t-md"
         />
-        <Image
+        {/* <Image
           src={post.eyecatch.url}
           alt="eyecatch"
-          width={400}
-          height={200}
-          className="block md:hidden thumbnail h-[200px] mb-2 rounded-t-md"
-        />
+          width={236}
+          height={118}
+          className="hidden sm:block thumbnail h-[120px] mb-2 rounded-t-md"
+        /> */}
         <div className="px-4">
           <h2 className="title font-semibold text-lg line-clamp-3">
             {post.title}
@@ -54,12 +54,12 @@ export default async function Home({
     <div className="flex flex-col">
       <Header />
       <main className="flex mx-auto min-h-screen">
-        <div className="md:w-[840px] grid grid-rows-6 grid-cols-auto-fit-60 gap-4">
+        <div className="md:w-[768px] lg:min-w-[768px] grid grid-rows-6 grid-cols-auto-fit-60 gap-2">
           {posts.map((post: Blog) => (
             <ArticleCard key={post.id} post={post} />
           ))}
         </div>
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Sidebar />
         </div>
       </main>

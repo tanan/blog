@@ -19,8 +19,11 @@ export const renderToc = (content: string) => {
 
 export const TableOfContents = ({ content }: any) => {
   const toc = renderToc(content);
+  if (toc.length === 0) {
+    return <></>;
+  }
   return (
-    <div className="max-w-[280px] sticky top-20 bg-white px-6 py-4 rounded-md">
+    <div className="max-w-[280px] min-w-[240px] sticky top-20 bg-white px-6 py-4 mr-4 rounded-md">
       <p className="TableOfContentsHead leading-8 text-gray-800 font-bold">
         目次
       </p>

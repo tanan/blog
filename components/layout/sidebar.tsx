@@ -9,7 +9,7 @@ type Props = {
 
 const SidebarItem: React.FC<Props> = ({ href, name }) => {
   return (
-    <li className="my-2 mx-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 hover:rounded-md">
+    <li className="my-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 hover:rounded-md">
       <Link href={href} className="text-sm px-2 leading-8">
         {name}
       </Link>
@@ -24,7 +24,8 @@ export default async function Sidebar() {
 
   const categories: Category[] = await data.json();
   return (
-    <div className="categories w-60">
+    <div className="categories min-w-[200px] w-[240px] bg-white mx-2 px-2 py-4">
+      <h2 className="leading-8 text-gray-800 font-bold">カテゴリ</h2>
       <ul className="my-2 w-full">
         {categories.map((topic) => (
           <SidebarItem
@@ -34,7 +35,7 @@ export default async function Sidebar() {
           />
         ))}
       </ul>
-      <div className="w-[calc(100%_-_16px)] mx-2 my-4 border-b border-gray-700 opacity-50"></div>
+      {/* <div className="w-[calc(100%_-_16px)] mx-2 my-4 border-b border-gray-700 opacity-50"></div> */}
     </div>
   );
 }

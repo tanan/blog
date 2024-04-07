@@ -18,11 +18,10 @@ export default async function ArticlePage({ params }: any) {
   const publishedAt = toFormatDate(post.publishedAt || "");
 
   return (
-    <div className="flex mx-auto mt-12 gap-8">
-      <main className="flex flex-col min-h-screen w-[860px] items-center">
+    <div className="flex mx-auto mt-12">
+      <main className="flex flex-col min-h-screen mx-6 md:max-w-[860px] items-center">
         <div className="article flex flex-col bg-white px-12 py-8 rounded-md">
           <div className="w-full h-auto"></div>
-          <Image src={eyecatch} width={1000} height={1000} alt="" />
           <h2 className="titile w-full mt-16 text-3xl font-bold">
             {post.title}
           </h2>
@@ -41,7 +40,7 @@ export default async function ArticlePage({ params }: any) {
           </div>
         </div>
       </main>
-      <div className="block">
+      <div className="invisible hidden lg:block lg:visible">
         <TableOfContents content={content} />
       </div>
     </div>
