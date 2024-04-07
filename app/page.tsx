@@ -7,7 +7,6 @@ import { toFormatDate } from "@/lib/utils";
 export const runtime = "edge";
 
 const ArticleCard = ({ post }: any) => {
-  console.log(post);
   return (
     <div className="mx-4 h-60 mb-4 md:w-[240px] duration-300 hover:opacity-70 bg-white rounded-md">
       <a href={`/article/${post.id}`} className="article">
