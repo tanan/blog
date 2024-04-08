@@ -30,7 +30,7 @@ export default async function Sidebar() {
         {categories.map((topic) => (
           <SidebarItem
             key={topic.id}
-            href={`/topic/${topic.id}`}
+            href={`/category/${topic.id}`}
             name={topic.name}
           />
         ))}

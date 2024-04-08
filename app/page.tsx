@@ -8,7 +8,7 @@ export const runtime = "edge";
 
 const ArticleCard = ({ post }: any) => {
   return (
-    <div className="mx-2 h-60 mb-4 w-[236px] duration-300 hover:opacity-70 bg-white rounded-md">
+    <div className="mx-2 h-64 mb-4 max-w-[236px] duration-300 hover:opacity-70 bg-white rounded-md">
       <a href={`/article/${post.id}`} className="article">
         <Image
           src={post.eyecatch.url}
@@ -17,13 +17,6 @@ const ArticleCard = ({ post }: any) => {
           height={118}
           className="thumbnail h-[120px] mb-2 rounded-t-md"
         />
-        {/* <Image
-          src={post.eyecatch.url}
-          alt="eyecatch"
-          width={236}
-          height={118}
-          className="hidden sm:block thumbnail h-[120px] mb-2 rounded-t-md"
-        /> */}
         <div className="px-4">
           <h2 className="title font-semibold text-lg line-clamp-3">
             {post.title}
@@ -54,7 +47,7 @@ export default async function Home({
     <div className="flex flex-col">
       <Header />
       <main className="flex mx-auto min-h-screen">
-        <div className="md:w-[768px] lg:min-w-[768px] grid grid-rows-6 grid-cols-auto-fit-60 gap-2">
+        <div className="md:w-[768px] lg:min-w-[768px] grid grid-rows-6 grid-cols-auto-fit-60 sm:w-[600px] gap-2">
           {posts.map((post: Blog) => (
             <ArticleCard key={post.id} post={post} />
           ))}
