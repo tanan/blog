@@ -24,7 +24,7 @@ export default async function Sidebar() {
 
   const categories: Category[] = await data.json();
   return (
-    <div className="categories min-w-[200px] w-[240px] bg-white mx-2 px-2 py-4">
+    <div className="categories min-w-[200px] lg:w-[280px] bg-white mx-2 px-4 py-4 rounded-md">
       <h2 className="leading-8 text-gray-800 font-bold">カテゴリ</h2>
       <ul className="my-2 w-full">
         {categories.map((category) => (

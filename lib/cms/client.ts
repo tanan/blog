@@ -53,3 +53,15 @@ export const getCategories = async () => {
     console.log(err);
   }
 };
+
+export const getCategoryById = async (categoryId: string) => {
+  try {
+    const data = await client.get({
+      endpoint: "categories",
+      contentId: categoryId,
+    });
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};

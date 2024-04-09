@@ -21,15 +21,24 @@ const ArticleCard = ({ post }: any) => {
           <h2 className="title font-semibold text-lg line-clamp-3">
             {post.title}
           </h2>
-          <div className="flex mt-2">
-            <div className="flex items-center text-gray-700 gap-4">
-              <span className="text-sm">{toFormatDate(post.publishedAt)}</span>
-            </div>
+          <div className="flex justify-end mt-2 items-center text-gray-700 gap-4">
+            <span className="text-sm">{toFormatDate(post.publishedAt)}</span>
           </div>
         </div>
       </a>
     </div>
   );
+};
+
+const getCategoryName = async (id: string) => {
+  if (id === "") {
+    return "記事一覧";
+  }
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/categories/${id}`
+  );
+  const data = await res.json();
+  return data.name;
 };
 
 export default async function Home({
@@ -42,19 +51,26 @@ export default async function Home({
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/articles?category=${c}&offset=${o}`
   );
-
   const posts: Blog[] = await data.json();
+
+  const categoryName = getCategoryName(c);
+  // const categoryName = "test";
   return (
     <div className="flex flex-col">
       <Header />
-      <main className="flex mx-auto min-h-screen">
-        <div className="md:w-[768px] lg:min-w-[768px] grid grid-rows-6 grid-cols-auto-fit-60 sm:w-[600px] gap-2">
-          {posts.map((post: Blog) => (
-            <ArticleCard key={post.id} post={post} />
-          ))}
-        </div>
-        <div className="hidden lg:block">
-          <Sidebar />
+      <main className="flex flex-col mx-auto min-h-screen">
+        <h2 className="mx-auto md:mx-2 my-4 font-semibold text-2xl">
+          {categoryName}
+        </h2>
+        <div className="flex">
+          <div className="md:w-[768px] lg:min-w-[768px] grid grid-rows-6 grid-cols-auto-fit-60 sm:w-[600px] gap-2">
+            {posts.map((post: Blog) => (
+              <ArticleCard key={post.id} post={post} />
+            ))}
+          </div>
+          <div className="hidden lg:block">
+            <Sidebar />
+          </div>
         </div>
       </main>
     </div>
