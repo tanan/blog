@@ -27,11 +27,11 @@ export default async function Sidebar() {
     <div className="categories min-w-[200px] w-[240px] bg-white mx-2 px-2 py-4">
       <h2 className="leading-8 text-gray-800 font-bold">カテゴリ</h2>
       <ul className="my-2 w-full">
-        {categories.map((topic) => (
+        {categories.map((category) => (
           <SidebarItem
-            key={topic.id}
-            href={`/category/${topic.id}`}
-            name={topic.name}
+            key={category.id}
+            href={`?category=${category.id}`}
+            name={category.name}
           />
         ))}
       </ul>

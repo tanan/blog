@@ -33,13 +33,14 @@ const ArticleCard = ({ post }: any) => {
 };
 
 export default async function Home({
-  searchParams: { offset },
+  searchParams: { category, offset },
 }: {
-  searchParams: { offset: number };
+  searchParams: { category: string; offset: number };
 }) {
+  const c = category === undefined ? "" : category;
   const o = offset === undefined ? 0 : offset;
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/articles?offset=${o}`
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/articles?category=${c}&offset=${o}`
   );
 
   const posts: Blog[] = await data.json();

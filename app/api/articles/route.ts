@@ -1,18 +1,30 @@
 import { Blog } from "@/lib/types";
 import { getBlogs } from "@/lib/cms/client";
 import { NextRequest } from "next/server";
+import type { MicroCMSQueries } from "microcms-js-sdk";
 
-export async function GET(req: NextRequest) {
-  const searchParams = req.nextUrl.searchParams;
-  const q = searchParams.get("q") || "";
-  const offset = Number(searchParams.get("offset"));
+const generateQueries = (searchParams: URLSearchParams): MicroCMSQueries => {
+  const category = searchParams.get("category");
+  const offset = Number(searchParams.get("offset") || 0);
   const limit = Number(searchParams.get("limit") || 10);
-  const data = await getBlogs({
-    q: q,
+  if (category) {
+    return {
+      filters: `category[equals]${category}`,
+      offset: offset,
+      limit: limit,
+      fields: "id,title,eyecatch,category,publishedAt",
+    };
+  }
+  return {
     offset: offset,
     limit: limit,
     fields: "id,title,eyecatch,category,publishedAt",
-  });
+  };
+};
+
+export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
+  const data = await getBlogs(generateQueries(searchParams));
 
   if (!data) {
     return Response.json({});
