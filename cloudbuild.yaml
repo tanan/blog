@@ -7,6 +7,9 @@ steps:
   - 'us-west1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
   - --build-arg=microcms_api_key=$$MICROCMS_API_KEY
   - '.'
+  env:
+  - 'MICROCMS_SERVICE_DOMAIN=${_MICROCMS_SERVICE_DOMAIN}'
+  - 'NEXT_PUBLIC_API_ENDPOINT=${_NEXT_PUBLIC_API_ENDPOINT}'
   secretEnv: ["MICROCMS_API_KEY"]
 # push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
