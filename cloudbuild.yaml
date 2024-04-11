@@ -4,13 +4,13 @@ steps:
   args:
   - 'build'
   - '-t'
-  - 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
+  - 'us-west1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
   - --build-arg=microcms_api_key=$$MICROCMS_API_KEY
   - '.'
   secretEnv: ["MICROCMS_API_KEY"]
 # push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA']
+  args: ['push', 'us-west1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
@@ -18,11 +18,11 @@ steps:
   - 'deploy'
   - 'blog'
   - '--image'
-  - 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
+  - 'us-west1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
   - '--region'
-  - 'asia-northeast1'
+  - 'us-west1'
 images:
-- 'asia-northeast1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
+- 'us-west1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
 availableSecrets:
   secretManager:
     - versionName: projects/anan-project/secrets/MICROCMS_API_KEY/versions/latest
