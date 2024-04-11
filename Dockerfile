@@ -18,7 +18,11 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ARG microcms_api_key
+ARG microcms_service_domain
+ARG next_public_api_endpoint
 ENV MICROCMS_API_KEY=$microcms_api_key
+ENV MICROCMS_SERVICE_DOMAIN=$microcms_service_domain
+ENV NEXT_PUBLIC_API_ENDPOINT=$next_public_api_endpoint
 RUN npm run build
 
 # Production image, copy all the files and run next
