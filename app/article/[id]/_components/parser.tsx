@@ -33,6 +33,14 @@ export const options: HTMLReactParserOptions = {
       );
     }
 
+    if (domNode.name === "h3") {
+      return (
+        <h3 id={attribs.id} className="anchor text-xl font-bold mt-12 mb-4">
+          {domToReact(children)}
+        </h3>
+      );
+    }
+
     if (domNode.name === "a") {
       if (attribs.href.startsWith("http")) {
         return <a {...attribs}>{domToReact(children)}</a>;

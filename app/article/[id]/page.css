@@ -5,6 +5,20 @@ p {
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
+.article-text li {
+    list-style: inside;
+    color: rgb(55 65 81);
+}
+
+.article-text ul li ul {
+    margin-left: 1.4em;
+}
+
+.article-text ul li ul li {
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
 code {
     color: white;
     padding: 4px;
