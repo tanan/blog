@@ -42,8 +42,14 @@ export const options: HTMLReactParserOptions = {
     }
 
     if (domNode.name === "a") {
+      const cn =
+        "underline underline-offset-4 text-blue-600 decoration-blue-400 hover:font-medium hover:decoration-2";
       if (attribs.href.startsWith("http")) {
-        return <a {...attribs}>{domToReact(children)}</a>;
+        return (
+          <a {...attribs} className={cn}>
+            {domToReact(children)}
+          </a>
+        );
       } else {
         return <Link href={attribs.href}>{domToReact(children)}</Link>;
       }

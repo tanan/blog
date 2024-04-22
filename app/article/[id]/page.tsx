@@ -12,8 +12,6 @@ export default async function ArticlePage({ params }: any) {
   );
 
   const post: Blog = await data.json();
-
-  const eyecatch = post.eyecatch?.url || "";
   const content = post.content || "";
   const publishedAt = toFormatDate(post.publishedAt || "");
 
