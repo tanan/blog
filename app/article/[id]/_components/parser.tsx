@@ -75,7 +75,7 @@ export const options: HTMLReactParserOptions = {
       const text: Text = code.children[0] as Text;
       const highlightCode: AutoHighlightResult = hljs.highlightAuto(text.data);
       return (
-        <pre className="p-4 bg-[#1a2638] whitespace-pre-wrap rounded-md">
+        <pre className="md:max-w-[860px] p-4 bg-[#1a2638] overflow-x-auto rounded-md">
           <code className={code.attribs["class"]}>
             {parse(highlightCode.value, options)}
           </code>
