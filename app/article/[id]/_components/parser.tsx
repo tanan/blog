@@ -25,9 +25,23 @@ export const options: HTMLReactParserOptions = {
 
     const { attribs } = domNode;
 
+    if (domNode.name === "h1") {
+      return (
+        <h1
+          id={attribs.id}
+          className="anchor font-bold mt-12 mb-4 pb-2 border-b-2 text-sm sm:text-base md:text-lg lg:text-2xl"
+        >
+          {domToReact(children)}
+        </h1>
+      );
+    }
+
     if (domNode.name === "h2") {
       return (
-        <h2 id={attribs.id} className="anchor text-2xl font-bold mt-12 mb-4">
+        <h2
+          id={attribs.id}
+          className="anchor font-bold mt-12 mb-4 pb-2 border-b-2 text-sm sm:text-base md:text-lg lg:text-xl"
+        >
           {domToReact(children)}
         </h2>
       );
@@ -35,7 +49,10 @@ export const options: HTMLReactParserOptions = {
 
     if (domNode.name === "h3") {
       return (
-        <h3 id={attribs.id} className="anchor text-xl font-bold mt-12 mb-4">
+        <h3
+          id={attribs.id}
+          className="anchor font-bold mt-12 mb-4 text-sm sm:text-base md:text-lg lg:text-xl"
+        >
           {domToReact(children)}
         </h3>
       );

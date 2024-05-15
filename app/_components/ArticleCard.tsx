@@ -13,7 +13,10 @@ const ArticleCard = ({ post }: any) => {
           className="thumbnail h-[clamp(130px,50%,168px)] mb-2 rounded-t-md"
         />
         <div className="relative px-4 h-[clamp(70px,45%,168px)]">
-          <h2 className="title font-semibold text-[clamp(12px,1.5vw,16px)] line-clamp-3">
+          <span className="bg-gray-200 px-2 py-1 rounded-md sm:text-sm text-[12px] text-gray-700">
+            {post.category?.name}
+          </span>
+          <h2 className="title mt-2 mx-1 font-semibold text-[clamp(12px,1.5vw,16px)] line-clamp-3">
             {post.title}
           </h2>
           <span className="absolute right-4 bottom-6 md:bottom-2 sm:text-sm text-[12px] text-gray-700">
