@@ -4,7 +4,7 @@ import { Blog } from "@/lib/types";
 import { options } from "./_components/parser";
 import { toFormatDate } from "@/lib/utils";
 import "./page.css";
-import { TableOfContents } from "@/components/layout/toc";
+import { TableOfContents } from "@/components/layout/TableOfContents";
 
 export default async function ArticlePage({ params }: any) {
   const data = await fetch(

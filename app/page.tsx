@@ -1,34 +1,9 @@
-import Image from "next/image";
-import Header from "@/components/layout/header";
-import Sidebar from "@/components/layout/sidebar";
 import { Blog } from "@/lib/types";
-import { toFormatDate } from "@/lib/utils";
+import { ArticleCard } from "./_components/ArticleCard";
+import { Header } from "@/components/layout/Header";
+import { Sidebar } from "@/components/layout/Sidebar";
 
 export const runtime = "edge";
-
-const ArticleCard = ({ post }: any) => {
-  return (
-    <div className="mx-2 h-64 mb-4 max-w-[236px] duration-300 hover:opacity-70 bg-white rounded-md">
-      <a href={`/article/${post.id}`} className="article">
-        <Image
-          src={post.eyecatch.url}
-          alt="eyecatch"
-          width={236}
-          height={118}
-          className="thumbnail h-[120px] mb-2 rounded-t-md"
-        />
-        <div className="px-4">
-          <h2 className="title font-semibold text-lg line-clamp-3">
-            {post.title}
-          </h2>
-          <div className="flex justify-end mt-2 items-center text-gray-700 gap-4">
-            <span className="text-sm">{toFormatDate(post.publishedAt)}</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  );
-};
 
 const getCategoryName = async (id: string) => {
   if (id === "") {
@@ -54,7 +29,6 @@ export default async function Home({
   const posts: Blog[] = await data.json();
 
   const categoryName = getCategoryName(c);
-  // const categoryName = "test";
   return (
     <div className="flex flex-col">
       <Header />

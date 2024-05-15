@@ -1,4 +1,4 @@
-export default function Header() {
+export const Header = () => {
   return (
     <header>
       <a href="/" className="flex container mx-auto py-12">
@@ -6,4 +6,4 @@ export default function Header() {
       </a>
     </header>
   );
-}
+};

@@ -1,8 +1,8 @@
 import { isText } from "domhandler";
 import * as cheerio from "cheerio";
-import { Link } from "../misc/link";
+import { Link } from "../misc/Link";
 
-export const renderToc = (content: string) => {
+const renderToc = (content: string) => {
   const $ = cheerio.load(content);
   const headings = $("h1, h2, h3").toArray();
   const toc = headings.map((data: cheerio.Element) => {
