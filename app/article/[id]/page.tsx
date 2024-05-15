@@ -1,10 +1,9 @@
-import Image from "next/image";
 import parse from "html-react-parser";
 import { Blog } from "@/lib/types";
 import { options } from "./_components/parser";
 import { toFormatDate } from "@/lib/utils";
 import "./page.css";
-import { TableOfContents } from "@/components/layout/TableOfContents";
+import TableOfContents from "@/components/layout/TableOfContents";
 
 export default async function ArticlePage({ params }: any) {
   const data = await fetch(

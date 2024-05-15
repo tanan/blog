@@ -1,7 +1,7 @@
 import { Category } from "@/lib/types";
-import { SidebarItem } from "./SidebarItem";
+import SidebarItem from "./SidebarItem";
 
-export const Sidebar = async () => {
+const Sidebar = async () => {
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/categories`
   );
@@ -22,3 +22,5 @@ export const Sidebar = async () => {
     </div>
   );
 };
+
+export default Sidebar;

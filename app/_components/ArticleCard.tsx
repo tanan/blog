@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { toFormatDate } from "@/lib/utils";
 
-export const ArticleCard = ({ post }: any) => {
+const ArticleCard = ({ post }: any) => {
   return (
     <div className="mx-auto mb-4 h-[clamp(200px,9.667rem+12.59vw,336px)] max-w-[300px] duration-300 hover:opacity-70 bg-white rounded-md">
       <a href={`/article/${post.id}`} className="article">
@@ -24,3 +24,5 @@ export const ArticleCard = ({ post }: any) => {
     </div>
   );
 };
+
+export default ArticleCard;

@@ -1,7 +1,7 @@
 import { Blog } from "@/lib/types";
-import { ArticleCard } from "./_components/ArticleCard";
-import { Header } from "@/components/layout/Header";
-import { Sidebar } from "@/components/layout/Sidebar";
+import ArticleCard from "./_components/ArticleCard";
+import Header from "@/components/layout/Header";
+import Sidebar from "@/components/layout/Sidebar";
 
 export const runtime = "edge";
 

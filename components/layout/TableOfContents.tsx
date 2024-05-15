@@ -17,7 +17,7 @@ const renderToc = (content: string) => {
   return toc;
 };
 
-export const TableOfContents = ({ content }: any) => {
+const TableOfContents = ({ content }: any) => {
   const toc = renderToc(content);
   if (toc.length === 0) {
     return <></>;
@@ -41,3 +41,5 @@ export const TableOfContents = ({ content }: any) => {
     </div>
   );
 };
+
+export default TableOfContents;
