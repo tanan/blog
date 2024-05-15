@@ -30,23 +30,25 @@ export default async function Home({
 
   const categoryName = getCategoryName(c);
   return (
-    <div className="flex flex-col">
+    <>
       <Header />
-      <main className="flex flex-col mx-auto min-h-screen">
-        <h2 className="mx-auto md:mx-2 my-4 font-semibold text-2xl">
-          {categoryName}
-        </h2>
-        <div className="flex">
-          <div className="md:w-[768px] lg:min-w-[768px] grid grid-rows-6 grid-cols-auto-fit-60 sm:w-[600px] gap-2">
-            {posts.map((post: Blog) => (
-              <ArticleCard key={post.id} post={post} />
-            ))}
-          </div>
-          <div className="hidden lg:block">
-            <Sidebar />
+      <section className="posts">
+        <div className="mx-auto w-[min(94%,1280px)]">
+          <h2 className="text-center sm:text-start sm:mx-6 my-6 font-semibold text-2xl">
+            {categoryName}
+          </h2>
+          <div className="flex">
+            <div className="posts-container mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 md:grid-cols-3">
+              {posts.map((post: Blog) => (
+                <ArticleCard key={post.id} post={post} />
+              ))}
+            </div>
+            <div className="hidden lg:block">
+              <Sidebar />
+            </div>
           </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
