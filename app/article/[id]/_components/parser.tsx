@@ -76,7 +76,7 @@ export const options: HTMLReactParserOptions = {
       const { height, width } = attribs;
       return (
         <Image
-          className="my-4"
+          className="my-4 object-cover"
           src={attribs.src}
           width={parseInt(width)}
           height={parseInt(height)}

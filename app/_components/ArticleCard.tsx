@@ -10,7 +10,7 @@ const ArticleCard = ({ post }: any) => {
           alt="eyecatch"
           width={300}
           height={168}
-          className="thumbnail h-[clamp(140px,50%,168px)] rounded-t-md"
+          className="thumbnail h-[clamp(140px,50%,168px)] rounded-t-md object-cover"
         />
         <div className="relative px-4 h-[clamp(120px,50%,168px)] overflow-hidden">
           <div className="mt-1 md:mt-2">
