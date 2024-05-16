@@ -29,7 +29,7 @@ export const options: HTMLReactParserOptions = {
       return (
         <h1
           id={attribs.id}
-          className="anchor font-bold mt-12 mb-4 pb-2 border-b-2 text-sm sm:text-base md:text-lg lg:text-2xl"
+          className="anchor font-bold mt-12 mb-4 pb-2 border-b-2 text-xl sm:text-2xl md:text-3xl"
         >
           {domToReact(children)}
         </h1>
@@ -40,7 +40,7 @@ export const options: HTMLReactParserOptions = {
       return (
         <h2
           id={attribs.id}
-          className="anchor font-bold mt-12 mb-4 pb-2 border-b-2 text-sm sm:text-base md:text-lg lg:text-xl"
+          className="anchor font-bold mt-12 mb-4 pb-2 border-b-2 text-lg sm:text-xl md:text-2xl"
         >
           {domToReact(children)}
         </h2>
@@ -51,7 +51,7 @@ export const options: HTMLReactParserOptions = {
       return (
         <h3
           id={attribs.id}
-          className="anchor font-bold mt-12 mb-4 text-sm sm:text-base md:text-lg lg:text-xl"
+          className="anchor font-bold mt-12 mb-4 text-md sm:text-lg md:text-xl"
         >
           {domToReact(children)}
         </h3>
@@ -92,7 +92,7 @@ export const options: HTMLReactParserOptions = {
       const text: Text = code.children[0] as Text;
       const highlightCode: AutoHighlightResult = hljs.highlightAuto(text.data);
       return (
-        <pre className="md:max-w-[780px] p-4 bg-[#1a2638] overflow-x-auto rounded-md">
+        <pre className="max-w-sm sm:max-w-xl md:max-w-[780px] p-4 bg-[#1a2638] rounded-md whitespace-pre overflow-x-auto text-sm md:text-base">
           <code className={code.attribs["class"]}>
             {parse(highlightCode.value, options)}
           </code>
