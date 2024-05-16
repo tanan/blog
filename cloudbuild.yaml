@@ -3,7 +3,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--no-cache'
   - '-t'
   - 'us-west1-docker.pkg.dev/anan-project/blog/next:$COMMIT_SHA'
   - --build-arg=microcms_api_key=$$MICROCMS_API_KEY
