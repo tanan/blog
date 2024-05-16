@@ -18,7 +18,7 @@ export default function Layout({
   return (
     <div className="flex flex-col">
       <Header />
-      <div className="flex">{children}</div>
+      {children}
       <Script src="//cdn.iframe.ly/embed.js" />
     </div>
   );
