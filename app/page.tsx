@@ -33,7 +33,7 @@ export default async function Home({
     <>
       <Header />
       <section className="posts">
-        <div className="mx-auto w-[min(72%,1280px)]">
+        <div className="mx-auto w-[clamp(72%,94vw,1280px)]">
           <h2 className="text-center sm:text-start sm:mx-6 my-6 font-semibold text-2xl">
             {categoryName}
           </h2>
