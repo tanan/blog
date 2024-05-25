@@ -16,7 +16,7 @@ export default async function ArticlePage({ params }: any) {
 
   return (
     <div className="flex mx-auto mt-4 mb-12 md:my-12">
-      <main className="flex basis-auto flex-col min-h-screen mx-6 md:max-w-[860px] items-center">
+      <main className="flex basis-auto flex-col min-h-screen mx-4 md:mx-6 md:max-w-[860px] items-center">
         <div className="article flex flex-col bg-white px-6 md:px-12 py-8 rounded-md">
           <h2 className="titile mt-16 text-3xl font-bold sm:text-2xl md:text-xl lg:text-3xl">
             {post.title}
