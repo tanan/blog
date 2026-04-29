@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+.github
+.vscode
+.tanstack
+.storybook
+.env
+.env.*
+!.env.example
+*.log
+README.md
+AGENTS.md
+CLAUDE.md

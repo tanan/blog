@@ -10,19 +10,30 @@ export const Route = createRootRoute({
 		meta: [
 			{ charSet: "utf-8" },
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
-			{ title: "blog" },
+			{ title: "Panda3 Blog" },
 		],
 	}),
 	shellComponent: RootDocument,
 });
 
+const bodyStyle = {
+	margin: 0,
+	minHeight: "100vh",
+	backgroundColor: "#f4f8fb",
+	color: "#1f2937",
+	fontFamily:
+		'-apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif',
+	WebkitFontSmoothing: "antialiased" as const,
+	MozOsxFontSmoothing: "grayscale" as const,
+};
+
 function RootDocument() {
 	return (
-		<html lang="en">
+		<html lang="ja">
 			<head>
 				<HeadContent />
 			</head>
-			<body>
+			<body style={bodyStyle}>
 				<Outlet />
 				<Scripts />
 			</body>
