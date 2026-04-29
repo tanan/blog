@@ -11,15 +11,18 @@ COPY . .
 RUN bun run build
 
 # ---- runtime ----
-FROM node:22-alpine AS runtime
+FROM oven/bun:1-alpine AS runtime
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOST=0.0.0.0
 
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile --production
+
 COPY --from=builder /app/dist ./dist
 
-USER node
+USER bun
 EXPOSE 3000
-CMD ["node", "dist/server/server.js"]
+CMD ["bun", "dist/server/server.js"]
